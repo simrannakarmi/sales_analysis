@@ -1,0 +1,60 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock title %}
+
+{% block nav_signup_class %}active{% endblock nav_signup_class %}
+
+{% block main-content %}
+<div class="container" style="padding-top: 80px;">
+  {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+          <div class="card-body p-4 p-sm-5">
+            <h2 class="card-title text-center mb-5 fs-5">Sign Up</h2>
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" name="username" required autofocus>
+                <label for="floatingInputUsername">Username</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" name="email">
+                <label for="floatingInputEmail">Email address</label>
+              </div>
+
+              <hr>
+
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password1">
+                <label for="floatingPassword">Password</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password" name="password2">
+                <label for="floatingPasswordConfirm">Confirm Password</label>
+              </div>
+
+              <div class="d-grid mb-2">
+                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit" style="color: #041d36;">Sign Up</button>
+              </div>
+
+
+              <hr class="my-4">
+
+              <a class="d-block text-center mt-2 small" href="{% url 'myapp:login' %}">Have an account? Sign In</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock main-content %}

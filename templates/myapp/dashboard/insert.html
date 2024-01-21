@@ -1,0 +1,131 @@
+{% extends 'myapp/dashboard/side_base.html' %}
+{% load static %}
+{% block title %}Insert Data{% endblock title %}
+{% block nav_insert_class %}active{% endblock nav_insert_class %}
+
+{% block main-content %}
+<main>
+    <div class="padding" style="padding-left: 10vw; padding-top: 60px; padding-right:10vw; width:80vw;">
+        <div class="container mt-1">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+     
+        <!-- {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %} -->
+        <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        
+          <form action="{% url 'myapp:create_company' %}" method="post">
+         {% csrf_token %}
+              <h4>Insert Brand:</h4>
+          <div class="mb-3">
+        
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+         
+        </form>
+        <br>
+        <!-- <hr class="border border-dark border-4 my-4"> -->
+        <hr class="border-top border-primary border-4 my-4">
+        
+        <!-- Product -->
+        
+        <form action="{% url 'myapp:create_product' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <h4>Insert Product:</h4>
+        
+          <div class="mb-3">
+            <label for="productName" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="productName" name="name" aria-describedby="productNameHelp" required>
+          </div>
+        
+        
+          <div class="mb-3">
+            <label for="productPrice" class="form-label">Product Price</label>
+            <input type="number" class="form-control" id="productPrice" name="price" aria-describedby="productPriceHelp" required>
+          </div>
+        
+          <div class="mb-3">
+            <label for="productQuantity" class="form-label">Product Quantity</label>
+            <input type="number" class="form-control" id="productQuantity" name="quantity" aria-describedby="productQuantityHelp" required>
+          </div>
+        
+          <div class="mb-3">
+            <label for="company" class="form-label">Select Brand</label>
+            <select class="form-select" id="company" name="c_id" required>
+              <option value="" disabled selected>Select a brand</option>
+              {% for company in companies %}
+                <option value="{{ company.id }}">{{ company.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        
+          <div class="mb-3">
+            <label for="productImage" class="form-label">Product Image</label>
+            <input type="file" class="form-control" id="productImage" name="img" accept="image/*" aria-describedby="productImageHelp" required>
+          </div>
+        
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <br>
+        <hr class="border-top border-primary border-4 my-4">
+        
+        <!-- Sales -->
+        
+        <form action="{% url 'myapp:create_sales' %}" method="post">
+          {% csrf_token %}
+          <h4>Insert Sales Record:</h4>
+        
+        
+          <div class="mb-3">
+            <label for="amount">Sold Quantity:</label>
+            <input type="number" class="form-control" id="amount" name="amount" required>
+          </div>
+        
+          <div class="mb-3">
+            <label for="totalprice">Total Price:</label>
+            <input type="number" class="form-control" id="totalprice" name="totalprice" required>
+          </div>
+        
+          <div class="mb-3">
+            <label for="is_indivisual">Is Individual:</label>
+            <select class="form-select" id="is_indivisual" name="is_indivisual" required>
+              <option value="1" selected>Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+        
+          <div class="mb-3">
+            <label for="product">Product:</label>
+            <select class="form-select" id="product" name="p_id" required>
+              <option value="" disabled selected>Select a product</option>
+              {% for product in products %}
+                <option value="{{ product.id }}">{{ product.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        
+        
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <hr class="border-top border-primary border-4 my-4">
+
+</main>
+
+{% endblock main-content %}

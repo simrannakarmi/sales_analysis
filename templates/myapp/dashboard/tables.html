@@ -1,0 +1,137 @@
+{% extends 'myapp/dashboard/side_base.html' %}
+{% load static %}
+{% block title %}Tables{% endblock title %}
+
+{% block nav_tables_class %}active{% endblock nav_tables_class %}
+
+{% block main-content %}
+    <main>
+        <div class="container-fluid px-4" style="width:80vw">
+            <h1 class="mt-4">Tables</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="{% url 'myapp:dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active">Tables</li>
+            </ol>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                   Products
+                </div>
+                <div class="card-body">
+                  <table id="datatablesSimple" class="table">
+                         <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Company</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in products %}
+                                    <tr>
+                                        <td>
+                                            {% if product.img %}
+                                                <img src="{{ product.img.url }}" alt="{{ product.name }}" height="50">
+                                            {% else %}
+                                                No Image
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.price }}</td>
+                                        <td>{{ product.quantity }}</td>
+                                        <td>{{ product.c_id.name }}</td>
+                                        
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <br><br>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                   Companies
+                </div>
+                <div class="card-body">
+                  <table id="datatablesSimple" class="table">
+                         <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in products %}
+                                    <tr>
+                                        <td>
+                                            {% if product.img %}
+                                                <img src="{{ product.img.url }}" alt="{{ product.name }}" height="50">
+                                            {% else %}
+                                                No Image
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ product.name }}</td>
+                                        
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+            <br><br>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                  Sales
+                </div>
+                <div class="card-body">
+                  <table id="datatablesSimple" class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Sold Quantity</th>
+                                <th>Total Price</th>
+                                <th>Is Individual</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Product</th>
+                                <th>Sold Quantity</th>
+                                <th>Total Price</th>
+                                <th>Is Individual</th>
+                                <th>Date</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {% for sale in sales %}
+                                <tr><td>
+                                        {% if sale.p_id %}
+                                            {{ sale.p_id.name }}
+                                        {% else %}
+                                            No Product
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ sale.amount }}</td>
+                                    <td>{{ sale.totalprice }}</td>
+                                    <td>{{ sale.is_indivisual }}</td>
+                                    <td>{{ sale.date }}</td>
+                                   
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+    </main>
+{% endblock main-content %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>X-Data Solutions | {% block title %}{% endblock title %}</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}"/>      
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container px-5">
+                <a class="navbar-brand" href="{% url 'myapp:index' %}">X-Data Solutions</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link {% block nav_home_class %}{% endblock nav_home_class %}" aria-current="page" href="{% url 'myapp:index' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link {% block nav_about_class %}{% endblock nav_about_class %}" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link {% block nav_services_class %}{% endblock nav_services_class %}" href="#!">Services</a></li>
+                        <li class="nav-item"><a class="nav-link {% block nav_contact_class %}{% endblock nav_contact_class %}" href="#!">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right ">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text_white {% block nav_login_class %}{% endblock nav_login_class %}" href="{% url 'myapp:login' %}">Login</a>
+                        </li>
+                        <li class="nav-item mx-2">    
+                            <a class="nav-link text_white {% block nav_signup_class %}{% endblock nav_signup_class %}" href="{% url 'myapp:signup' %}">Sign Up</a> 
+                        </li>
+                     </ul>
+                </div>
+            </div>
+        </nav>    
+    {% block main-content %}{% endblock main-content %}
+    {% include 'myapp/footer.html' %}      
+        <!-- Bootstrap core JS-->    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'myapp/js/scripts.js' %}"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
